@@ -231,6 +231,18 @@ strong {
   vertical-align: 0.08rem;
 }
 
+.visitor-map {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.visitor-map img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #eaecef;
+  border-radius: 6px;
+}
+
 @media (max-width: 900px) {
   #main {
     grid-template-columns: 1fr;
