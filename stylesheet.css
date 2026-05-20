@@ -101,6 +101,7 @@ strong {
   border: 1px solid #e1e4e8;
   border-radius: 50%;
   object-fit: cover;
+  object-position: center 18%;
   background: #f6f8fa;
 }
 
