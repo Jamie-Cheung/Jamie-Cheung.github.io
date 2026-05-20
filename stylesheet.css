@@ -233,8 +233,8 @@ strong {
 }
 
 .visitor-map {
-  width: min(260px, 100%);
-  margin-top: 2rem;
+  width: min(340px, 100%);
+  margin-top: 1rem;
   margin-right: auto;
   margin-left: auto;
   text-align: center;
