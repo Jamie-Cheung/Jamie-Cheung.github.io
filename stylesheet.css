@@ -236,7 +236,10 @@ strong {
   text-align: center;
 }
 
-.visitor-map img {
+.visitor-map img,
+.visitor-map iframe,
+.visitor-map canvas,
+.visitor-map svg {
   max-width: 100%;
   height: auto;
   border: 1px solid #eaecef;
