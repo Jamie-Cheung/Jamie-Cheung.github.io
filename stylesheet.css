@@ -94,15 +94,14 @@ strong {
 }
 
 .author__avatar {
+  display: block;
   width: 150px;
   height: 150px;
   margin-bottom: 18px;
   border: 1px solid #e1e4e8;
   border-radius: 50%;
-  background:
-    radial-gradient(circle at 50% 42%, #dfe2e5 0 28%, transparent 29%),
-    radial-gradient(circle at 50% 118%, #dfe2e5 0 46%, transparent 47%),
-    #f6f8fa;
+  object-fit: cover;
+  background: #f6f8fa;
 }
 
 .author__name {
