@@ -9,7 +9,7 @@
       content="Zhanjie Zhang's academic homepage. Research interests include text-to-image, image-to-image, image restoration, and neural rendering."
     >
     <title>Zhanjie Zhang - Homepage</title>
-    <link rel="stylesheet" href="stylesheet.css?v=20260520-visitors-title">
+    <link rel="stylesheet" href="stylesheet.css?v=20260520-visitor-total">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
   </head>
   <body>
@@ -432,10 +432,61 @@
 
             <h1>🌐 Visitors</h1>
             <div class="visitor-map" aria-label="Visitor map">
+              <div class="visitor-stat" aria-live="polite">
+                <span class="visitor-stat__label">Total Pageviews</span>
+                <span class="visitor-stat__value" id="visitor-total">...</span>
+              </div>
               <script
                 type="text/javascript"
                 id="clstr_globe"
                 src="https://clustrmaps.com/globe.js?d=GE7N6Sbo977cKrar2ktFqENWeyvuoaQhHeqWhwHh4X8">
+              </script>
+              <script>
+                (function () {
+                  var token = "GE7N6Sbo977cKrar2ktFqENWeyvuoaQhHeqWhwHh4X8";
+                  var totalEl = document.getElementById("visitor-total");
+
+                  function addJsonp(url, callbackName, handler) {
+                    var script = document.createElement("script");
+                    window[callbackName] = function (payload) {
+                      try {
+                        handler(String(payload || ""));
+                      } finally {
+                        delete window[callbackName];
+                        script.remove();
+                      }
+                    };
+                    script.src = url + (url.indexOf("?") === -1 ? "?" : "&") + "callback=" + callbackName;
+                    document.body.appendChild(script);
+                  }
+
+                  addJsonp("https://clustrmaps.com/globe_call_home.js?d=" + token, "__visitorHome", function (payload) {
+                    var idMatch = payload.match(/'id'\s*:\s*(\d+)/);
+                    var lastMatch = payload.match(/'last_hit_id'\s*:\s*(\d+)/);
+                    var initialMatch = payload.match(/'initial_hit_id'\s*:\s*(\d+)/);
+
+                    if (!idMatch) {
+                      totalEl.textContent = "--";
+                      return;
+                    }
+
+                    var globeUrl = "https://clustrmaps.com/ajax/globe?id=" + idMatch[1]
+                      + "&last_hit_id=" + (lastMatch ? lastMatch[1] : "0")
+                      + "&initial_hit_id=" + (initialMatch ? initialMatch[1] : "0");
+
+                    addJsonp(globeUrl, "__visitorGlobe", function (globePayload) {
+                      var total = 0;
+                      var match;
+                      var regex = /"v"\s*:\s*(\d+)/g;
+
+                      while ((match = regex.exec(globePayload)) !== null) {
+                        total += Number(match[1]);
+                      }
+
+                      totalEl.textContent = total ? total.toLocaleString() : "0";
+                    });
+                  });
+                }());
               </script>
             </div>
           </section>
