@@ -216,6 +216,11 @@ strong {
   margin-top: 1.5rem;
 }
 
+.pub-note {
+  color: #586069;
+  font-size: 0.92rem;
+}
+
 .paper-list p {
   margin-bottom: 1rem;
 }
