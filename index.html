@@ -9,7 +9,7 @@
       content="Zhanjie Zhang's academic homepage. Research interests include text-to-image, image-to-image, image restoration, and neural rendering."
     >
     <title>Zhanjie Zhang - Homepage</title>
-    <link rel="stylesheet" href="stylesheet.css?v=20260520-visitor-total-v2">
+    <link rel="stylesheet" href="stylesheet.css?v=20260520-visitor-total-v3">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
   </head>
   <body>
@@ -462,16 +462,6 @@
                     return total;
                   }
 
-                  function sumInitialPageviews(payload) {
-                    var batchMatch = payload.match(/_helper\.add\(\[([\s\S]*?)\]\)/);
-
-                    if (!batchMatch) {
-                      return 0;
-                    }
-
-                    return sumPageviews(batchMatch[1]);
-                  }
-
                   function addJsonp(url, callbackName, handler) {
                     var script = document.createElement("script");
                     window[callbackName] = function (payload) {
@@ -486,24 +476,24 @@
                     document.body.appendChild(script);
                   }
 
+                  function loadTotalPageviews(siteId) {
+                    var globeUrl = "https://clustrmaps.com/ajax/globe?id=" + siteId
+                      + "&last_hit_id=0&initial_hit_id=0";
+
+                    addJsonp(globeUrl, "__visitorGlobe", function (globePayload) {
+                      showTotal(sumPageviews(globePayload));
+                    });
+                  }
+
                   addJsonp("https://clustrmaps.com/globe_call_home.js?d=" + token, "__visitorHome", function (payload) {
                     var idMatch = payload.match(/'id'\s*:\s*(\d+)/);
-                    var lastMatch = payload.match(/'last_hit_id'\s*:\s*(\d+)/);
-                    var initialMatch = payload.match(/'initial_hit_id'\s*:\s*(\d+)/);
 
                     if (!idMatch) {
                       totalEl.textContent = "--";
                       return;
                     }
 
-                    var baseline = sumInitialPageviews(payload);
-                    var globeUrl = "https://clustrmaps.com/ajax/globe?id=" + idMatch[1]
-                      + "&last_hit_id=" + (lastMatch ? lastMatch[1] : "0")
-                      + "&initial_hit_id=" + (initialMatch ? initialMatch[1] : "0");
-
-                    addJsonp(globeUrl, "__visitorGlobe", function (globePayload) {
-                      showTotal(baseline + sumPageviews(globePayload));
-                    });
+                    loadTotalPageviews(idMatch[1]);
                   });
                 }());
               </script>
