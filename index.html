@@ -9,7 +9,7 @@
       content="Zhanjie Zhang's academic homepage. Research interests include text-to-image, image-to-image, image restoration, and neural rendering."
     >
     <title>Zhanjie Zhang - Homepage</title>
-    <link rel="stylesheet" href="stylesheet.css?v=20260520-visitor-total">
+    <link rel="stylesheet" href="stylesheet.css?v=20260520-visitor-total-fix">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
   </head>
   <body>
@@ -446,6 +446,10 @@
                   var token = "GE7N6Sbo977cKrar2ktFqENWeyvuoaQhHeqWhwHh4X8";
                   var totalEl = document.getElementById("visitor-total");
 
+                  function showTotal(total) {
+                    totalEl.textContent = total > 0 ? total.toLocaleString() : "0";
+                  }
+
                   function addJsonp(url, callbackName, handler) {
                     var script = document.createElement("script");
                     window[callbackName] = function (payload) {
@@ -460,19 +464,9 @@
                     document.body.appendChild(script);
                   }
 
-                  addJsonp("https://clustrmaps.com/globe_call_home.js?d=" + token, "__visitorHome", function (payload) {
-                    var idMatch = payload.match(/'id'\s*:\s*(\d+)/);
-                    var lastMatch = payload.match(/'last_hit_id'\s*:\s*(\d+)/);
-                    var initialMatch = payload.match(/'initial_hit_id'\s*:\s*(\d+)/);
-
-                    if (!idMatch) {
-                      totalEl.textContent = "--";
-                      return;
-                    }
-
-                    var globeUrl = "https://clustrmaps.com/ajax/globe?id=" + idMatch[1]
-                      + "&last_hit_id=" + (lastMatch ? lastMatch[1] : "0")
-                      + "&initial_hit_id=" + (initialMatch ? initialMatch[1] : "0");
+                  function fetchTotalFromGlobe(siteId) {
+                    var globeUrl = "https://clustrmaps.com/ajax/globe?id=" + siteId
+                      + "&last_hit_id=0&initial_hit_id=0";
 
                     addJsonp(globeUrl, "__visitorGlobe", function (globePayload) {
                       var total = 0;
@@ -483,8 +477,47 @@
                         total += Number(match[1]);
                       }
 
-                      totalEl.textContent = total ? total.toLocaleString() : "0";
+                      showTotal(total);
                     });
+                  }
+
+                  function fetchTotalFromOrangeDots(siteId) {
+                    var statsUrl = "https://clustrmaps.com/ajax/orange_dots?id=" + siteId
+                      + "&last_hit_id=0&max_hit_id=0&max_visit_count=0";
+
+                    if (!window.fetch) {
+                      fetchTotalFromGlobe(siteId);
+                      return;
+                    }
+
+                    fetch(statsUrl)
+                      .then(function (response) {
+                        if (!response.ok) {
+                          throw new Error("stats request failed");
+                        }
+                        return response.json();
+                      })
+                      .then(function (data) {
+                        if (data && typeof data.total_hits === "number") {
+                          showTotal(data.total_hits);
+                          return;
+                        }
+                        throw new Error("missing total_hits");
+                      })
+                      .catch(function () {
+                        fetchTotalFromGlobe(siteId);
+                      });
+                  }
+
+                  addJsonp("https://clustrmaps.com/globe_call_home.js?d=" + token, "__visitorHome", function (payload) {
+                    var idMatch = payload.match(/'id'\s*:\s*(\d+)/);
+
+                    if (!idMatch) {
+                      totalEl.textContent = "--";
+                      return;
+                    }
+
+                    fetchTotalFromOrangeDots(idMatch[1]);
                   });
                 }());
               </script>
