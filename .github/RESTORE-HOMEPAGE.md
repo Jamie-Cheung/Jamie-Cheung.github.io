@@ -1,0 +1,29 @@
+# 主页打不开了？按下面做（二选一）
+
+## 办法 A：继续用 GitHub Actions（可一键隐藏/显示）
+
+1. 打开：https://github.com/Jamie-Cheung/Jamie-Cheung.github.io/settings/pages  
+2. **Source** 选 **GitHub Actions**（不要选 Deploy from a branch）  
+3. 打开 **Actions** → 左侧点 **Publish homepage** → 右上角 **Run workflow** → 再点绿色 **Run workflow**  
+4. 等约 1 分钟变绿后，访问 https://jamie-cheung.github.io/（建议 Ctrl+Shift+R 强制刷新）
+
+## 办法 B：不用 Actions，最简单（推荐不熟 Actions 时用）
+
+1. 打开：https://github.com/Jamie-Cheung/Jamie-Cheung.github.io/settings/pages  
+2. **Source** 选 **Deploy from a branch**  
+3. **Branch** 选 **main**，文件夹选 **/ (root)**，点 **Save**  
+4. 等 2～5 分钟，访问 https://jamie-cheung.github.io/
+
+> 办法 B 下「Hide homepage / Publish homepage」两个 workflow **不会**生效；要隐藏主页只能暂时改仓库 Private，或再改回办法 A。
+
+## 确认 site-config.json
+
+根目录 `site-config.json` 里应是：
+
+```json
+{
+  "published": true
+}
+```
+
+若是 `"published": false`，改成 `true` 后 commit 并 push。
