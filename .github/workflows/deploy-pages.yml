@@ -1,0 +1,69 @@
+name: Deploy homepage
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Publish or hide the public homepage
+        type: choice
+        options:
+          - publish
+          - hide
+        default: publish
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Decide publish mode
+        id: mode
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            published=$([ "${{ inputs.mode }}" = "publish" ] && echo true || echo false)
+          else
+            published=$(python3 -c "import json; print('true' if json.load(open('site-config.json')).get('published', True) else 'false')")
+          fi
+          echo "published=$published" >> "$GITHUB_OUTPUT"
+
+      - name: Build site
+        run: |
+          mkdir -p _site
+          if [ "${{ steps.mode.outputs.published }}" = "true" ]; then
+            rsync -a \
+              --exclude='.git' \
+              --exclude='.github' \
+              --exclude='offline' \
+              --exclude='site-config.json' \
+              --exclude='README.md' \
+              ./ _site/
+          else
+            cp offline/index.html _site/index.html
+            cp offline/stylesheet.css _site/stylesheet.css
+            touch _site/.nojekyll
+          fi
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
