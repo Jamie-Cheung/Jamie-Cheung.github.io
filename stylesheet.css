@@ -345,6 +345,7 @@ strong {
   display: block;
   width: 100%;
   height: 100%;
+  pointer-events: none;
 }
 
 .visitor-globe-shell--ready {
@@ -398,6 +399,12 @@ strong {
   border: 0;
   background: transparent;
   cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+.visitor-globe-link:focus {
+  outline: none;
 }
 
 .visitor-globe-link:hover .visitor-globe-shell,
