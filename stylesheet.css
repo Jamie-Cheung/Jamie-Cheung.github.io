@@ -306,53 +306,25 @@ strong {
   font-weight: 700;
 }
 
-.visitor-globe-embed img,
-.visitor-globe-embed iframe,
-.visitor-globe-embed canvas,
-.visitor-globe-embed svg,
-.visitor-globe-fallback svg {
-  max-width: 100%;
-  height: auto;
+.visitor-globe-shell {
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto;
+  aspect-ratio: 1;
   border: 1px solid #eaecef;
   border-radius: 6px;
+  background: linear-gradient(180deg, #f6f8fa 0%, #eef6ff 100%);
+  overflow: hidden;
 }
 
-.visitor-globe-fallback[hidden] {
-  display: none;
-}
-
-.visitor-globe-fallback svg {
+.visitor-globe-canvas {
   display: block;
   width: 100%;
-  background: linear-gradient(180deg, #f6f8fa 0%, #eef6ff 100%);
+  height: 100%;
 }
 
-.visitor-globe__halo {
-  fill: #eaf5ff;
-  stroke: #d0e7ff;
-  stroke-width: 2;
-}
-
-.visitor-globe__sea {
-  stroke: #1f6fb2;
-  stroke-width: 2;
-}
-
-.visitor-globe__land {
-  fill: #55b66f;
-  opacity: 0.9;
-}
-
-.visitor-globe__grid {
-  fill: none;
-  stroke: rgba(255, 255, 255, 0.58);
-  stroke-width: 2;
-}
-
-.visitor-globe__dot {
-  fill: #ff7a45;
-  stroke: #ffffff;
-  stroke-width: 1.5;
+.visitor-globe-shell--ready {
+  background: transparent;
 }
 
 @media (max-width: 900px) {
