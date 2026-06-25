@@ -384,12 +384,6 @@ strong {
   stroke-width: 1.5;
 }
 
-.visitor-map__hint {
-  margin: 0 0 0.65rem;
-  color: #586069;
-  font-size: 0.82rem;
-}
-
 .visitor-globe-link {
   display: block;
   width: 100%;
