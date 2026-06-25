@@ -552,13 +552,48 @@
                   var globeEmbedEl = document.getElementById("visitor-globe-embed");
                   var globeFallbackEl = document.getElementById("visitor-globe-fallback");
 
+                  function hasRenderedGlobe(node) {
+                    var rect = node.getBoundingClientRect();
+                    var style = window.getComputedStyle ? window.getComputedStyle(node) : null;
+                    var isVisible = rect.width >= 40
+                      && rect.height >= 40
+                      && (!style || (style.display !== "none" && style.visibility !== "hidden"));
+
+                    if (!isVisible) {
+                      return false;
+                    }
+
+                    if (node.tagName && node.tagName.toLowerCase() === "img") {
+                      return node.complete && node.naturalWidth > 0 && node.naturalHeight > 0;
+                    }
+
+                    return true;
+                  }
+
                   function updateGlobeFallback() {
                     if (!globeEmbedEl || !globeFallbackEl) {
                       return;
                     }
 
-                    var externalGlobe = globeEmbedEl.querySelector("canvas, embed, iframe, img, object, svg");
-                    globeFallbackEl.hidden = Boolean(externalGlobe);
+                    var externalGlobes = globeEmbedEl.querySelectorAll("canvas, embed, iframe, img, object, svg");
+                    var hasExternalGlobe = false;
+
+                    for (var i = 0; i < externalGlobes.length; i++) {
+                      var externalGlobe = externalGlobes[i];
+
+                      if (externalGlobe.tagName && externalGlobe.tagName.toLowerCase() === "img" && !externalGlobe.dataset.visitorGlobeObserved) {
+                        externalGlobe.dataset.visitorGlobeObserved = "true";
+                        externalGlobe.addEventListener("load", updateGlobeFallback);
+                        externalGlobe.addEventListener("error", updateGlobeFallback);
+                      }
+
+                      if (hasRenderedGlobe(externalGlobe)) {
+                        hasExternalGlobe = true;
+                        break;
+                      }
+                    }
+
+                    globeFallbackEl.hidden = hasExternalGlobe;
                   }
 
                   updateGlobeFallback();
