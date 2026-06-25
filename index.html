@@ -9,7 +9,7 @@
       content="Zhanjie Zhang's academic homepage. Research interests include text-to-image, image-to-image, image restoration, and neural rendering."
     >
     <title>Zhanjie Zhang - Homepage</title>
-    <link rel="stylesheet" href="stylesheet.css?v=20260520-visitor-total-v4">
+    <link rel="stylesheet" href="stylesheet.css?v=20260625-visitor-globe-fallback">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
   </head>
   <body>
@@ -519,15 +519,59 @@
                 <span class="visitor-stat__label">Total Pageviews</span>
                 <span class="visitor-stat__value" id="visitor-total">...</span>
               </div>
-              <script
-                type="text/javascript"
-                id="clstr_globe"
-                src="https://clustrmaps.com/globe.js?d=GE7N6Sbo977cKrar2ktFqENWeyvuoaQhHeqWhwHh4X8">
-              </script>
+              <div class="visitor-globe-embed" id="visitor-globe-embed">
+                <script
+                  type="text/javascript"
+                  id="clstr_globe"
+                  src="https://clustrmaps.com/globe.js?d=GE7N6Sbo977cKrar2ktFqENWeyvuoaQhHeqWhwHh4X8">
+                </script>
+              </div>
+              <div class="visitor-globe-fallback" id="visitor-globe-fallback" role="img" aria-label="Visitor globe">
+                <svg viewBox="0 0 240 240" aria-hidden="true" focusable="false">
+                  <defs>
+                    <radialGradient id="visitor-globe-sea" cx="34%" cy="28%" r="72%">
+                      <stop offset="0%" stop-color="#b8e7ff" />
+                      <stop offset="52%" stop-color="#4aa3df" />
+                      <stop offset="100%" stop-color="#1f6fb2" />
+                    </radialGradient>
+                  </defs>
+                  <circle class="visitor-globe__halo" cx="120" cy="120" r="103" />
+                  <circle class="visitor-globe__sea" cx="120" cy="120" r="88" fill="url(#visitor-globe-sea)" />
+                  <path class="visitor-globe__land" d="M68 86c18-28 48-41 75-35 11 2 20 8 27 15-17 2-27 10-29 24-3 17-21 15-34 22-12 6-12 18-21 23-10 6-25-3-29-17-3-10 2-22 11-32z" />
+                  <path class="visitor-globe__land" d="M144 143c15-10 31-5 38 8 8 15 1 32-16 41-18 8-41 1-48-15-6-13 9-23 26-34z" />
+                  <path class="visitor-globe__grid" d="M32 120h176M120 32c-30 24-45 54-45 88s15 64 45 88M120 32c30 24 45 54 45 88s-15 64-45 88" />
+                  <circle class="visitor-globe__dot" cx="77" cy="92" r="4" />
+                  <circle class="visitor-globe__dot" cx="151" cy="84" r="4" />
+                  <circle class="visitor-globe__dot" cx="170" cy="156" r="4" />
+                </svg>
+              </div>
               <script>
                 (function () {
                   var token = "GE7N6Sbo977cKrar2ktFqENWeyvuoaQhHeqWhwHh4X8";
                   var totalEl = document.getElementById("visitor-total");
+                  var globeEmbedEl = document.getElementById("visitor-globe-embed");
+                  var globeFallbackEl = document.getElementById("visitor-globe-fallback");
+
+                  function updateGlobeFallback() {
+                    if (!globeEmbedEl || !globeFallbackEl) {
+                      return;
+                    }
+
+                    var externalGlobe = globeEmbedEl.querySelector("canvas, embed, iframe, img, object, svg");
+                    globeFallbackEl.hidden = Boolean(externalGlobe);
+                  }
+
+                  updateGlobeFallback();
+
+                  if (globeEmbedEl && "MutationObserver" in window) {
+                    new MutationObserver(updateGlobeFallback).observe(globeEmbedEl, {
+                      childList: true,
+                      subtree: true
+                    });
+                  }
+
+                  window.setTimeout(updateGlobeFallback, 1000);
+                  window.setTimeout(updateGlobeFallback, 3000);
 
                   function showTotal(total) {
                     totalEl.textContent = total > 0 ? total.toLocaleString() : "0";

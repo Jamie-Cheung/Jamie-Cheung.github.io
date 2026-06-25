@@ -306,14 +306,53 @@ strong {
   font-weight: 700;
 }
 
-.visitor-map img,
-.visitor-map iframe,
-.visitor-map canvas,
-.visitor-map svg {
+.visitor-globe-embed img,
+.visitor-globe-embed iframe,
+.visitor-globe-embed canvas,
+.visitor-globe-embed svg,
+.visitor-globe-fallback svg {
   max-width: 100%;
   height: auto;
   border: 1px solid #eaecef;
   border-radius: 6px;
+}
+
+.visitor-globe-fallback[hidden] {
+  display: none;
+}
+
+.visitor-globe-fallback svg {
+  display: block;
+  width: 100%;
+  background: linear-gradient(180deg, #f6f8fa 0%, #eef6ff 100%);
+}
+
+.visitor-globe__halo {
+  fill: #eaf5ff;
+  stroke: #d0e7ff;
+  stroke-width: 2;
+}
+
+.visitor-globe__sea {
+  stroke: #1f6fb2;
+  stroke-width: 2;
+}
+
+.visitor-globe__land {
+  fill: #55b66f;
+  opacity: 0.9;
+}
+
+.visitor-globe__grid {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.58);
+  stroke-width: 2;
+}
+
+.visitor-globe__dot {
+  fill: #ff7a45;
+  stroke: #ffffff;
+  stroke-width: 1.5;
 }
 
 @media (max-width: 900px) {
