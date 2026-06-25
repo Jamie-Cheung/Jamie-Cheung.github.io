@@ -307,8 +307,10 @@ strong {
 }
 
 .visitor-globe-shell {
+  position: relative;
   width: 100%;
   max-width: 340px;
+  min-height: 280px;
   margin: 0 auto;
   aspect-ratio: 1;
   border: 1px solid #eaecef;
@@ -317,7 +319,29 @@ strong {
   overflow: hidden;
 }
 
+.visitor-globe-static {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: visitor-globe-spin 24s linear infinite;
+}
+
+.visitor-globe-static[hidden] {
+  display: none;
+}
+
+.visitor-globe-static svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .visitor-globe-canvas {
+  position: relative;
+  z-index: 1;
   display: block;
   width: 100%;
   height: 100%;
@@ -325,6 +349,48 @@ strong {
 
 .visitor-globe-shell--ready {
   background: transparent;
+}
+
+.visitor-globe-shell--ready .visitor-globe-static {
+  display: none;
+}
+
+.visitor-globe__halo {
+  fill: #eaf5ff;
+  stroke: #d0e7ff;
+  stroke-width: 2;
+}
+
+.visitor-globe__sea {
+  stroke: #1f6fb2;
+  stroke-width: 2;
+}
+
+.visitor-globe__land {
+  fill: #55b66f;
+  opacity: 0.9;
+}
+
+.visitor-globe__grid {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.58);
+  stroke-width: 2;
+}
+
+.visitor-globe__dot {
+  fill: #ff7a45;
+  stroke: #ffffff;
+  stroke-width: 1.5;
+}
+
+@keyframes visitor-globe-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @media (max-width: 900px) {
