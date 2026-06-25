@@ -9,7 +9,7 @@
       content="Zhanjie Zhang's academic homepage. Research interests include text-to-image, image-to-image, image restoration, and neural rendering."
     >
     <title>Zhanjie Zhang - Homepage</title>
-    <link rel="stylesheet" href="stylesheet.css?v=20260625-visitor-no-hint">
+    <link rel="stylesheet" href="stylesheet.css?v=20260625-visitor-globe-only">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
   </head>
   <body>
@@ -515,70 +515,33 @@
 
             <h1 id="visitors">🌐 Visitors</h1>
             <div class="visitor-map" aria-label="Visitor map">
-              <div class="visitor-stat" aria-live="polite">
-                <span class="visitor-stat__label">Total Pageviews</span>
-                <span class="visitor-stat__value" id="visitor-total">0</span>
-              </div>
-              <div
-                class="visitor-globe-link"
-                id="visitor-globe-open"
-                role="button"
-                tabindex="0"
-                aria-haspopup="dialog"
-                aria-controls="visitor-dialog"
-                aria-label="Open visitor map details">
-                <div class="visitor-globe-shell" id="visitor-globe-shell">
-                  <div class="visitor-globe-static" id="visitor-globe-static" role="img" aria-label="Visitor globe">
-                    <svg viewBox="0 0 240 240" aria-hidden="true" focusable="false">
-                      <defs>
-                        <radialGradient id="visitor-globe-sea" cx="34%" cy="28%" r="72%">
-                          <stop offset="0%" stop-color="#b8e7ff" />
-                          <stop offset="52%" stop-color="#4aa3df" />
-                          <stop offset="100%" stop-color="#1f6fb2" />
-                        </radialGradient>
-                      </defs>
-                      <circle class="visitor-globe__halo" cx="120" cy="120" r="103" />
-                      <circle class="visitor-globe__sea" cx="120" cy="120" r="88" fill="url(#visitor-globe-sea)" />
-                      <path class="visitor-globe__land" d="M68 86c18-28 48-41 75-35 11 2 20 8 27 15-17 2-27 10-29 24-3 17-21 15-34 22-12 6-12 18-21 23-10 6-25-3-29-17-3-10 2-22 11-32z" />
-                      <path class="visitor-globe__land" d="M144 143c15-10 31-5 38 8 8 15 1 32-16 41-18 8-41 1-48-15-6-13 9-23 26-34z" />
-                      <path class="visitor-globe__grid" d="M32 120h176M120 32c-30 24-45 54-45 88s15 64 45 88M120 32c30 24 45 54 45 88s-15 64-45 88" />
-                      <circle class="visitor-globe__dot" cx="77" cy="92" r="4" />
-                      <circle class="visitor-globe__dot" cx="151" cy="84" r="4" />
-                      <circle class="visitor-globe__dot" cx="170" cy="156" r="4" />
-                    </svg>
-                  </div>
-                  <canvas
-                    class="visitor-globe-canvas"
-                    id="visitor-globe-canvas"
-                    width="680"
-                    height="680"
-                    aria-hidden="true">
-                  </canvas>
+              <div class="visitor-globe-shell" id="visitor-globe-shell">
+                <div class="visitor-globe-static" id="visitor-globe-static" role="img" aria-label="Visitor globe">
+                  <svg viewBox="0 0 240 240" aria-hidden="true" focusable="false">
+                    <defs>
+                      <radialGradient id="visitor-globe-sea" cx="34%" cy="28%" r="72%">
+                        <stop offset="0%" stop-color="#b8e7ff" />
+                        <stop offset="52%" stop-color="#4aa3df" />
+                        <stop offset="100%" stop-color="#1f6fb2" />
+                      </radialGradient>
+                    </defs>
+                    <circle class="visitor-globe__halo" cx="120" cy="120" r="103" />
+                    <circle class="visitor-globe__sea" cx="120" cy="120" r="88" fill="url(#visitor-globe-sea)" />
+                    <path class="visitor-globe__land" d="M68 86c18-28 48-41 75-35 11 2 20 8 27 15-17 2-27 10-29 24-3 17-21 15-34 22-12 6-12 18-21 23-10 6-25-3-29-17-3-10 2-22 11-32z" />
+                    <path class="visitor-globe__land" d="M144 143c15-10 31-5 38 8 8 15 1 32-16 41-18 8-41 1-48-15-6-13 9-23 26-34z" />
+                    <path class="visitor-globe__grid" d="M32 120h176M120 32c-30 24-45 54-45 88s15 64 45 88M120 32c30 24 45 54 45 88s-15 64-45 88" />
+                    <circle class="visitor-globe__dot" cx="77" cy="92" r="4" />
+                    <circle class="visitor-globe__dot" cx="151" cy="84" r="4" />
+                    <circle class="visitor-globe__dot" cx="170" cy="156" r="4" />
+                  </svg>
                 </div>
-              </div>
-              <div class="visitor-dialog" id="visitor-dialog" hidden>
-                <div class="visitor-dialog__backdrop" data-visitor-close></div>
-                <div
-                  class="visitor-dialog__panel"
-                  role="dialog"
-                  aria-modal="true"
-                  aria-labelledby="visitor-dialog-title">
-                  <button type="button" class="visitor-dialog__close" id="visitor-dialog-close" aria-label="Close visitor details">
-                    ×
-                  </button>
-                  <h2 class="visitor-dialog__title" id="visitor-dialog-title">Visitor Map</h2>
-                  <p class="visitor-dialog__total">
-                    Total pageviews:
-                    <strong id="visitor-dialog-total">0</strong>
-                  </p>
-                  <p class="visitor-dialog__location" id="visitor-your-location">Detecting your location...</p>
-                  <h3 class="visitor-dialog__subtitle">Recent visitor regions</h3>
-                  <ul class="visitor-location-list" id="visitor-location-list"></ul>
-                  <p class="visitor-dialog__note">
-                    External stats:
-                    <a href="https://hits.sh/jamie-cheung.github.io/" target="_blank" rel="noopener noreferrer">hits.sh dashboard</a>
-                  </p>
-                </div>
+                <canvas
+                  class="visitor-globe-canvas"
+                  id="visitor-globe-canvas"
+                  width="680"
+                  height="680"
+                  aria-label="Visitor globe">
+                </canvas>
               </div>
               <script type="module">
                 import createGlobe from "./assets/visitor-globe.mjs";
@@ -638,188 +601,6 @@
                   shell.classList.add("visitor-globe-shell--static");
                   console.warn("Visitor globe fallback used", error);
                 }
-              </script>
-              <script>
-                (function () {
-                  var hitsUrl = "https://hits.sh/jamie-cheung.github.io.svg";
-                  var baseline = 0;
-                  var locations = [
-                    "Hangzhou, China",
-                    "Beijing, China",
-                    "Shanghai, China",
-                    "Shenzhen, China",
-                    "Singapore",
-                    "Tokyo, Japan",
-                    "Seoul, South Korea",
-                    "London, UK",
-                    "Paris, France",
-                    "New York, USA",
-                    "San Francisco, USA",
-                    "Los Angeles, USA",
-                    "Sydney, Australia"
-                  ];
-                  var totalEl = document.getElementById("visitor-total");
-                  var dialogTotalEl = document.getElementById("visitor-dialog-total");
-                  var dialog = document.getElementById("visitor-dialog");
-                  var openBtn = document.getElementById("visitor-globe-open");
-                  var closeBtn = document.getElementById("visitor-dialog-close");
-                  var locationEl = document.getElementById("visitor-your-location");
-                  var listEl = document.getElementById("visitor-location-list");
-
-                  function showTotal(total) {
-                    var value = Number(total) || 0;
-                    var text = value.toLocaleString();
-
-                    if (totalEl) {
-                      totalEl.textContent = text;
-                    }
-
-                    if (dialogTotalEl) {
-                      dialogTotalEl.textContent = text;
-                    }
-                  }
-
-                  function loadHitsCount() {
-                    return fetch(hitsUrl, { cache: "no-store" })
-                      .then(function (response) {
-                        if (!response.ok) {
-                          throw new Error("hits request failed");
-                        }
-
-                        return response.text();
-                      })
-                      .then(function (svg) {
-                        var match = svg.match(/hits:\s*(\d+)/i);
-
-                        if (!match) {
-                          throw new Error("hits parse failed");
-                        }
-
-                        return baseline + Number(match[1]);
-                      });
-                  }
-
-                  function fillLocationList() {
-                    if (!listEl) {
-                      return;
-                    }
-
-                    listEl.innerHTML = "";
-
-                    locations.forEach(function (name) {
-                      var li = document.createElement("li");
-                      li.textContent = name;
-                      listEl.appendChild(li);
-                    });
-                  }
-
-                  function loadYourLocation() {
-                    if (!locationEl) {
-                      return;
-                    }
-
-                    fetch("https://ipwho.is/")
-                      .then(function (response) {
-                        if (!response.ok) {
-                          throw new Error("geo request failed");
-                        }
-
-                        return response.json();
-                      })
-                      .then(function (data) {
-                        if (!data || !data.success) {
-                          throw new Error("geo lookup failed");
-                        }
-
-                        locationEl.textContent = "You are visiting from: " + data.city + ", " + data.country;
-                      })
-                      .catch(function () {
-                        return fetch("https://www.cloudflare.com/cdn-cgi/trace")
-                          .then(function (response) {
-                            if (!response.ok) {
-                              throw new Error("trace request failed");
-                            }
-
-                            return response.text();
-                          })
-                          .then(function (text) {
-                            var match = text.match(/loc=([A-Z]{2})/);
-
-                            if (!match) {
-                              throw new Error("trace parse failed");
-                            }
-
-                            locationEl.textContent = "You are visiting from country code: " + match[1];
-                          });
-                      })
-                      .catch(function () {
-                        locationEl.textContent = "Your location is unavailable right now.";
-                      });
-                  }
-
-                  function openDialog() {
-                    if (!dialog) {
-                      return;
-                    }
-
-                    dialog.hidden = false;
-                    document.body.classList.add("visitor-dialog-open");
-                    fillLocationList();
-                    loadYourLocation();
-
-                    if (closeBtn) {
-                      closeBtn.focus();
-                    }
-                  }
-
-                  function closeDialog() {
-                    if (!dialog) {
-                      return;
-                    }
-
-                    dialog.hidden = true;
-                    document.body.classList.remove("visitor-dialog-open");
-
-                    if (openBtn) {
-                      openBtn.focus();
-                    }
-                  }
-
-                  if (openBtn) {
-                    openBtn.addEventListener("click", openDialog);
-                    openBtn.addEventListener("keydown", function (event) {
-                      if (event.key === "Enter" || event.key === " ") {
-                        event.preventDefault();
-                        openDialog();
-                      }
-                    });
-                  }
-
-                  if (closeBtn) {
-                    closeBtn.addEventListener("click", closeDialog);
-                  }
-
-                  if (dialog) {
-                    dialog.addEventListener("click", function (event) {
-                      if (event.target && event.target.hasAttribute("data-visitor-close")) {
-                        closeDialog();
-                      }
-                    });
-                  }
-
-                  document.addEventListener("keydown", function (event) {
-                    if (event.key === "Escape" && dialog && !dialog.hidden) {
-                      closeDialog();
-                    }
-                  });
-
-                  showTotal(baseline);
-                  loadHitsCount()
-                    .then(showTotal)
-                    .catch(function () {
-                      showTotal(baseline);
-                    });
-                }());
               </script>
             </div>
           </section>

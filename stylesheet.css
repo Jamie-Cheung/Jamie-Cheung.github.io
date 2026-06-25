@@ -268,42 +268,11 @@ strong {
 }
 
 .visitor-map {
-  position: relative;
   width: min(340px, 100%);
   margin-top: 1rem;
   margin-right: auto;
   margin-left: auto;
   text-align: center;
-}
-
-.visitor-stat {
-  position: absolute;
-  top: 0.6rem;
-  right: 0.6rem;
-  z-index: 2;
-  padding: 0.35rem 0.5rem;
-  border: 1px solid rgba(27, 31, 35, 0.12);
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.88);
-  box-shadow: 0 1px 3px rgba(27, 31, 35, 0.08);
-  color: #24292e;
-  line-height: 1.15;
-  text-align: right;
-}
-
-.visitor-stat__label {
-  display: block;
-  color: #586069;
-  font-size: 0.66rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-}
-
-.visitor-stat__value {
-  display: block;
-  font-size: 0.95rem;
-  font-weight: 700;
 }
 
 .visitor-globe-shell {
@@ -345,7 +314,6 @@ strong {
   display: block;
   width: 100%;
   height: 100%;
-  pointer-events: none;
 }
 
 .visitor-globe-shell--ready {
@@ -382,122 +350,6 @@ strong {
   fill: #ff7a45;
   stroke: #ffffff;
   stroke-width: 1.5;
-}
-
-.visitor-globe-link {
-  display: block;
-  width: 100%;
-  max-width: 340px;
-  margin: 0 auto;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-  position: relative;
-  z-index: 1;
-}
-
-.visitor-globe-link:focus {
-  outline: none;
-}
-
-.visitor-globe-link:hover .visitor-globe-shell,
-.visitor-globe-link:focus-visible .visitor-globe-shell {
-  box-shadow: 0 0 0 2px rgba(3, 102, 214, 0.28);
-}
-
-.visitor-dialog {
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  display: grid;
-  place-items: center;
-  padding: 1rem;
-}
-
-.visitor-dialog[hidden] {
-  display: none;
-}
-
-.visitor-dialog__backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(27, 31, 35, 0.45);
-}
-
-.visitor-dialog__panel {
-  position: relative;
-  z-index: 1;
-  width: min(420px, 100%);
-  max-height: min(80vh, 560px);
-  padding: 1.1rem 1.1rem 1rem;
-  overflow: auto;
-  border: 1px solid #eaecef;
-  border-radius: 8px;
-  background: #ffffff;
-  box-shadow: 0 12px 32px rgba(27, 31, 35, 0.18);
-  text-align: left;
-}
-
-.visitor-dialog__close {
-  position: absolute;
-  top: 0.45rem;
-  right: 0.55rem;
-  width: 2rem;
-  height: 2rem;
-  border: 0;
-  border-radius: 6px;
-  background: transparent;
-  color: #586069;
-  font-size: 1.4rem;
-  line-height: 1;
-  cursor: pointer;
-}
-
-.visitor-dialog__close:hover,
-.visitor-dialog__close:focus-visible {
-  background: #f6f8fa;
-  color: #24292e;
-}
-
-.visitor-dialog__title {
-  margin: 0 2rem 0.75rem 0;
-  font-size: 1.15rem;
-}
-
-.visitor-dialog__total {
-  margin: 0 0 0.75rem;
-}
-
-.visitor-dialog__location {
-  margin: 0 0 0.9rem;
-  color: #586069;
-  font-size: 0.92rem;
-}
-
-.visitor-dialog__subtitle {
-  margin: 0 0 0.45rem;
-  font-size: 0.95rem;
-}
-
-.visitor-location-list {
-  margin: 0 0 0.9rem;
-  padding-left: 1.1rem;
-  color: #24292e;
-}
-
-.visitor-location-list li + li {
-  margin-top: 0.25rem;
-}
-
-.visitor-dialog__note {
-  margin: 0;
-  color: #586069;
-  font-size: 0.82rem;
-}
-
-body.visitor-dialog-open {
-  overflow: hidden;
 }
 
 @keyframes visitor-globe-spin {
