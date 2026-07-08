@@ -267,6 +267,34 @@ strong {
   line-height: 1.4;
 }
 
+.motto {
+  margin: 1.35rem 0 0;
+  padding: 1.1rem 0 0;
+  border-top: 1px solid #eaecef;
+  text-align: left;
+}
+
+.motto p {
+  margin: 0;
+}
+
+.motto__zh {
+  color: #24292e;
+  font-family: "Songti SC", "Noto Serif SC", "Source Han Serif SC", "STSong", serif;
+  font-size: 0.94rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  line-height: 1.75;
+}
+
+.motto__en {
+  margin-top: 0.65rem !important;
+  color: #6a737d;
+  font-size: 0.78rem;
+  font-style: italic;
+  line-height: 1.6;
+}
+
 @media (max-width: 900px) {
   .collaborator-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -296,6 +324,10 @@ strong {
   }
 
   .author__urls-wrapper {
+    grid-column: 1 / -1;
+  }
+
+  .profile_box .motto {
     grid-column: 1 / -1;
   }
 }
@@ -329,5 +361,14 @@ strong {
 
   .paper-box-image {
     min-height: 76px;
+  }
+
+  .motto__zh {
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+  }
+
+  .motto__en {
+    font-size: 0.76rem;
   }
 }
