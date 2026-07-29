@@ -26,7 +26,7 @@ jobs:
 
       - name: Sync GitHub traffic data
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.TRAFFIC_SYNC_TOKEN || secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: python3 .github/scripts/sync_traffic.py
 
