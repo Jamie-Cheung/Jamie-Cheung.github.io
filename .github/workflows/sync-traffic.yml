@@ -1,20 +1,12 @@
-name: Deploy homepage
+name: Sync traffic stats
 
 on:
-  push:
-    branches: [main]
+  schedule:
+    - cron: "30 0 * * *"
   workflow_dispatch:
-    inputs:
-      mode:
-        description: Publish or hide the public homepage
-        type: choice
-        options:
-          - publish
-          - hide
-        default: publish
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -23,7 +15,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  sync-and-deploy:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -38,14 +30,23 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: python3 .github/scripts/sync_traffic.py
 
+      - name: Commit traffic data
+        run: |
+          if git diff --quiet -- data/traffic.json; then
+            echo "Traffic data unchanged."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/traffic.json
+          git commit -m "Update traffic stats"
+          git push
+
       - name: Decide publish mode
         id: mode
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            published=$([ "${{ inputs.mode }}" = "publish" ] && echo true || echo false)
-          else
-            published=$(python3 -c "import json; print('true' if json.load(open('site-config.json')).get('published', True) else 'false')")
-          fi
+          published=$(python3 -c "import json; print('true' if json.load(open('site-config.json')).get('published', True) else 'false')")
           echo "published=$published" >> "$GITHUB_OUTPUT"
 
       - name: Build site

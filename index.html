@@ -9,7 +9,7 @@
       content="Zhanjie Zhang's academic homepage. Research interests include text-to-image, image-to-image, image restoration, and neural rendering."
     >
     <title>Zhanjie Zhang - Homepage</title>
-    <link rel="stylesheet" href="stylesheet.css?v=20260708-typography">
+    <link rel="stylesheet" href="stylesheet.css?v=20260729-traffic">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
   </head>
   <body>
@@ -528,6 +528,93 @@
             </ul>
 
             <h1>🎖 Honors and Awards</h1>
+
+            <h1 id="traffic">📊 Traffic</h1>
+            <div class="traffic-stats" id="traffic-stats" aria-live="polite">
+              <div class="traffic-stat">
+                <span class="traffic-stat__label">Total Pageviews / 总访问量</span>
+                <span class="traffic-stat__value" id="traffic-total">—</span>
+              </div>
+              <div class="traffic-stat">
+                <span class="traffic-stat__label">Last 14 Days / 近 14 天访问量</span>
+                <span class="traffic-stat__value" id="traffic-recent">—</span>
+              </div>
+              <p class="traffic-stats__note" id="traffic-note" hidden></p>
+            </div>
+            <script>
+              (function () {
+                var totalEl = document.getElementById("traffic-total");
+                var recentEl = document.getElementById("traffic-recent");
+                var noteEl = document.getElementById("traffic-note");
+
+                function formatNumber(value) {
+                  return Number(value || 0).toLocaleString();
+                }
+
+                function formatDate(value) {
+                  if (!value) {
+                    return "";
+                  }
+
+                  var date = new Date(value);
+                  if (Number.isNaN(date.getTime())) {
+                    return value.slice(0, 10);
+                  }
+
+                  return date.toISOString().slice(0, 10);
+                }
+
+                fetch("data/traffic.json", { cache: "no-store" })
+                  .then(function (response) {
+                    if (!response.ok) {
+                      throw new Error("traffic request failed");
+                    }
+
+                    return response.json();
+                  })
+                  .then(function (data) {
+                    if (totalEl) {
+                      totalEl.textContent = formatNumber(data.total_views);
+                    }
+
+                    if (recentEl) {
+                      recentEl.textContent = formatNumber(data.last_14_days_views);
+                    }
+
+                    if (!noteEl) {
+                      return;
+                    }
+
+                    var parts = [];
+                    if (data.tracking_since) {
+                      parts.push("统计自 " + data.tracking_since + " / tracked since " + data.tracking_since);
+                    }
+
+                    if (data.updated_at) {
+                      parts.push("更新于 " + formatDate(data.updated_at) + " / updated " + formatDate(data.updated_at));
+                    }
+
+                    if (parts.length) {
+                      noteEl.textContent = parts.join(" · ");
+                      noteEl.hidden = false;
+                    }
+                  })
+                  .catch(function () {
+                    if (totalEl) {
+                      totalEl.textContent = "—";
+                    }
+
+                    if (recentEl) {
+                      recentEl.textContent = "—";
+                    }
+
+                    if (noteEl) {
+                      noteEl.textContent = "访问量数据暂不可用 / Traffic data is unavailable.";
+                      noteEl.hidden = false;
+                    }
+                  });
+              })();
+            </script>
           </section>
         </div>
       </article>
