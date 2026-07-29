@@ -102,9 +102,21 @@ def main() -> int:
     except urllib.error.HTTPError as error:
         body = error.read().decode("utf-8", errors="replace")
         print(f"GitHub traffic API failed: {error.code} {body}", file=sys.stderr)
+        if error.code == 403:
+            print(
+                "Traffic API is not available to the default GITHUB_TOKEN. "
+                "Add a classic PAT with repo scope as the TRAFFIC_SYNC_TOKEN secret.",
+                file=sys.stderr,
+            )
+        if DATA_PATH.exists():
+            print("Keeping existing traffic data and continuing.", file=sys.stderr)
+            return 0
         return 1
     except urllib.error.URLError as error:
         print(f"GitHub traffic API request failed: {error}", file=sys.stderr)
+        if DATA_PATH.exists():
+            print("Keeping existing traffic data and continuing.", file=sys.stderr)
+            return 0
         return 1
 
     state = load_state()
