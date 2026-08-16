@@ -222,6 +222,46 @@ strong {
   margin-top: 1.5rem;
 }
 
+.open-call {
+  margin: 0 0 1rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid #dbe7f8;
+  border-left: 3px solid #0366d6;
+  border-radius: 6px;
+  background: #f6faff;
+}
+
+.open-call p:last-child {
+  margin-bottom: 0;
+}
+
+.open-call__label {
+  margin-bottom: 0.35rem;
+  color: #0366d6;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.open-call__tag {
+  display: inline-block;
+  margin: 0 0.05rem;
+  padding: 0.12rem 0.4rem;
+  border-radius: 3px;
+  background: #eef5ff;
+  color: #0366d6;
+  font-size: 0.86em;
+  font-weight: 600;
+  line-height: 1.45;
+  vertical-align: baseline;
+}
+
+.open-call__tag--code {
+  background: #eef8f1;
+  color: #22863a;
+}
+
 .pub-note {
   color: #586069;
   font-size: 0.92rem;
