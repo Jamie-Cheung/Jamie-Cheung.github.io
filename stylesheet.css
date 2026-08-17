@@ -144,8 +144,9 @@ strong {
 }
 
 .author__updated {
-  color: #6a737d;
-  font-size: 0.86rem;
+  color: #24292e;
+  font-size: 0.93rem;
+  font-weight: 700;
 }
 
 .author__updated time {
