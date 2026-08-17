@@ -31,6 +31,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Decide publish mode
         id: mode
@@ -44,16 +46,10 @@ jobs:
 
       - name: Build site
         run: |
-          mkdir -p _site
           if [ "${{ steps.mode.outputs.published }}" = "true" ]; then
-            rsync -a \
-              --exclude='.git' \
-              --exclude='.github' \
-              --exclude='offline' \
-              --exclude='site-config.json' \
-              --exclude='README.md' \
-              ./ _site/
+            bash scripts/build-homepage.sh _site
           else
+            mkdir -p _site
             cp offline/index.html _site/index.html
             cp offline/stylesheet.css _site/stylesheet.css
             touch _site/.nojekyll

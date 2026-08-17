@@ -20,17 +20,11 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Build full site
-        run: |
-          mkdir -p _site
-          rsync -a \
-            --exclude='.git' \
-            --exclude='.github' \
-            --exclude='offline' \
-            --exclude='site-config.json' \
-            --exclude='README.md' \
-            ./ _site/
+        run: bash scripts/build-homepage.sh _site
 
       - uses: actions/upload-pages-artifact@v3
         with:
