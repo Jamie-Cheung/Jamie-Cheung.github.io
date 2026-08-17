@@ -143,6 +143,15 @@ strong {
   color: #586069;
 }
 
+.author__updated {
+  color: #6a737d;
+  font-size: 0.86rem;
+}
+
+.author__updated time {
+  font-variant-numeric: tabular-nums;
+}
+
 .page {
   min-width: 0;
 }
