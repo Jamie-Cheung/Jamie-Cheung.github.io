@@ -33,3 +33,78 @@ a:hover {
   margin: 0 0 0.75rem;
   color: #586069;
 }
+
+.offline__owner {
+  margin-top: 2.5rem;
+}
+
+.offline__owner-toggle {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: #9da5ad;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.offline__owner-toggle:hover,
+.offline__owner-toggle:focus {
+  color: #586069;
+  text-decoration: underline;
+}
+
+.offline__form {
+  margin: 1rem auto 0;
+  max-width: 320px;
+  text-align: left;
+}
+
+.offline__label {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: #24292e;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.offline__row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.offline__row input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.offline__row button {
+  appearance: none;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  background: #f6f8fa;
+  color: #24292e;
+  padding: 0.4rem 0.7rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.offline__row button:hover,
+.offline__row button:focus {
+  background: #eef1f4;
+}
+
+.offline__hint {
+  margin-top: 0.65rem;
+  font-size: 0.8rem;
+}
+
+.offline__error {
+  margin-top: 0.5rem;
+  color: #b42318;
+  font-size: 0.85rem;
+}

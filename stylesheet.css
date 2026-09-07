@@ -427,3 +427,33 @@ strong {
     font-size: 0.76rem;
   }
 }
+
+.owner-preview-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem 1rem;
+  padding: 0.65rem 1rem;
+  background: #fff8c5;
+  color: #3b3b00;
+  border-bottom: 1px solid #d4c56a;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.owner-preview-banner__exit {
+  appearance: none;
+  border: 1px solid #9a8b2a;
+  background: #fff;
+  color: #3b3b00;
+  border-radius: 4px;
+  padding: 0.2rem 0.7rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.owner-preview-banner__exit:hover,
+.owner-preview-banner__exit:focus {
+  background: #fff4ce;
+}

@@ -45,14 +45,13 @@ jobs:
           echo "published=$published" >> "$GITHUB_OUTPUT"
 
       - name: Build site
+        env:
+          HOMEPAGE_PREVIEW_KEY: ${{ secrets.HOMEPAGE_PREVIEW_KEY }}
         run: |
           if [ "${{ steps.mode.outputs.published }}" = "true" ]; then
             bash scripts/build-homepage.sh _site
           else
-            mkdir -p _site
-            cp offline/index.html _site/index.html
-            cp offline/stylesheet.css _site/stylesheet.css
-            touch _site/.nojekyll
+            bash scripts/build-homepage.sh _site --hidden
           fi
 
       - name: Upload Pages artifact
