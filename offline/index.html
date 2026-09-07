@@ -12,6 +12,35 @@
       <h1>主页暂未公开</h1>
       <p>This homepage is temporarily offline.</p>
       <p>如需联系，请发送邮件至 <a href="mailto:zhangzhanj@126.com">zhangzhanj@126.com</a>。</p>
+
+      <p class="offline__owner">
+        <button
+          type="button"
+          class="offline__owner-toggle"
+          id="owner-unlock-toggle"
+          aria-expanded="false"
+          aria-controls="owner-unlock"
+        >
+          我是站长
+        </button>
+      </p>
+
+      <form class="offline__form" id="owner-unlock" hidden>
+        <label class="offline__label" for="owner-unlock-key">预览口令</label>
+        <div class="offline__row">
+          <input
+            id="owner-unlock-key"
+            name="preview"
+            type="password"
+            autocomplete="current-password"
+            spellcheck="false"
+          >
+          <button type="submit">查看我的主页</button>
+        </div>
+        <p class="offline__hint">别人打开这个网站看不到完整主页。口令正确后，这台电脑会记住预览。</p>
+        <p class="offline__error" id="owner-unlock-error" hidden></p>
+      </form>
     </main>
+    <script src="owner-preview.js"></script>
   </body>
 </html>

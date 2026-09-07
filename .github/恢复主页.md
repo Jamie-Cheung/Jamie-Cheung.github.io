@@ -22,8 +22,9 @@
 
 ```json
 {
-  "published": true
+  "published": true,
+  "previewKey": "zhanjie-preview"
 }
 ```
 
-若是 `"published": false`，改成 `true` 后 commit 并 push。
+若是 `"published": false`，改成 `true` 后 commit 并 push。隐藏模式下，你自己仍可用 `previewKey` 打开完整预览，不必先公开主页。

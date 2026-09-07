@@ -1,0 +1,16 @@
+name: Test homepage build
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check public and hidden builds
+        run: bash scripts/test-owner-preview.sh

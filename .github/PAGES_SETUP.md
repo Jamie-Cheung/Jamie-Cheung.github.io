@@ -17,6 +17,8 @@ Cloud Agent **无法代替你点击** GitHub 网页上的 Settings（需要你�
 - **隐藏主页**：Actions → **Hide homepage** → Run workflow  
 - **显示主页**：Actions → **Publish homepage** → Run workflow  
 
+隐藏后外人只能看到「主页暂未公开」；你自己可用 `site-config.json` 里的 `previewKey` 打开完整预览（类似谷歌学术隐藏主页后自己仍能看）。
+
 以后不必再改仓库 Public / Private。
 
 ## 若下拉框里没有 GitHub Actions
