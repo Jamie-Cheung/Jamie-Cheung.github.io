@@ -75,8 +75,8 @@ if "noindex" not in html.lower():
 slug_js = json.dumps(slug, ensure_ascii=False)
 banner = f"""
     <div class="owner-preview-banner" role="status">
-      <span>当前主页未公开，这是仅你可见的预览。访客打开网站只能看到「暂未公开」。</span>
-      <button type="button" class="owner-preview-banner__exit" id="owner-preview-exit">退出预览</button>
+      <span>已通过密码进入主页。退出后需重新输入密码。</span>
+      <button type="button" class="owner-preview-banner__exit" id="owner-preview-exit">退出</button>
     </div>
     <script>
       try {{ localStorage.setItem("zhang-homepage-preview-slug", {slug_js}); }} catch (e) {{}}
@@ -99,7 +99,7 @@ PY
   printf 'User-agent: *\nDisallow: /\n' > "$dest/robots.txt"
   touch "$dest/.nojekyll"
 
-  echo "Built hidden homepage with owner-only preview."
+  echo "Built password-gated homepage."
   if [ "${PRINT_PREVIEW_SLUG:-}" = "1" ]; then
     echo "Preview path: /p/${slug}/"
   fi

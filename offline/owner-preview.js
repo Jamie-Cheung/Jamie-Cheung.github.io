@@ -3,7 +3,6 @@
 
   var STORAGE_KEY = "zhang-homepage-preview-slug";
   var form = document.getElementById("owner-unlock");
-  var toggle = document.getElementById("owner-unlock-toggle");
   var input = document.getElementById("owner-unlock-key");
   var error = document.getElementById("owner-unlock-error");
 
@@ -95,31 +94,13 @@
     return hashParams.get("preview") || "";
   }
 
-  function revealForm() {
-    if (!form) return;
-    form.hidden = false;
-    if (toggle) toggle.setAttribute("aria-expanded", "true");
-    if (input) input.focus();
-  }
-
-  if (toggle && form) {
-    toggle.addEventListener("click", function () {
-      if (form.hidden) {
-        revealForm();
-      } else {
-        form.hidden = true;
-        toggle.setAttribute("aria-expanded", "false");
-      }
-    });
-  }
-
   if (form) {
     form.addEventListener("submit", function (event) {
       event.preventDefault();
       hideError();
       var key = input ? input.value : "";
       if (!key.trim()) {
-        showError("请输入预览口令。");
+        showError("请输入密码。");
         return;
       }
       slugForKey(key)
@@ -128,25 +109,26 @@
         })
         .then(function (ok) {
           if (!ok) {
-            showError("口令不正确。");
+            showError("密码不正确。");
           }
         })
         .catch(function () {
-          showError("预览无法打开，请稍后再试。");
+          showError("暂时无法打开，请稍后再试。");
         });
     });
   }
 
   async function boot() {
+    if (input) input.focus();
+
     var key = keyFromLocation();
     if (key) {
-      revealForm();
       if (input) input.value = key;
       var slug = await slugForKey(key);
       if (await openPreview(slug)) {
         return;
       }
-      showError("口令不正确。");
+      showError("密码不正确。");
     }
 
     var remembered = readRememberedSlug();
