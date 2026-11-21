@@ -43,6 +43,11 @@ test -f "$tmp/hidden/p/$slug/images/Google.jpg"
 test ! -e "$tmp/hidden/images"
 
 grep -q "主页暂未公开" "$tmp/hidden/index.html"
+grep -q "请输入密码" "$tmp/hidden/index.html"
+if grep -q "我是站长" "$tmp/hidden/index.html"; then
+  echo "gate should not distinguish visitors from the owner" >&2
+  exit 1
+fi
 if grep -q "Publications" "$tmp/hidden/index.html"; then
   echo "offline root page must not include homepage content" >&2
   exit 1
@@ -58,6 +63,7 @@ fi
 
 grep -q "Publications" "$preview"
 grep -q "owner-preview-banner" "$preview"
+grep -q "已通过密码进入主页" "$preview"
 grep -q "noindex" "$preview"
 grep -q "Disallow: /" "$tmp/hidden/robots.txt"
 

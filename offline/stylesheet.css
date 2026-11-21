@@ -34,28 +34,8 @@ a:hover {
   color: #586069;
 }
 
-.offline__owner {
-  margin-top: 2.5rem;
-}
-
-.offline__owner-toggle {
-  appearance: none;
-  border: 0;
-  padding: 0;
-  background: transparent;
-  color: #9da5ad;
-  font-size: 0.8rem;
-  cursor: pointer;
-}
-
-.offline__owner-toggle:hover,
-.offline__owner-toggle:focus {
-  color: #586069;
-  text-decoration: underline;
-}
-
 .offline__form {
-  margin: 1rem auto 0;
+  margin: 2rem auto 0;
   max-width: 320px;
   text-align: left;
 }
