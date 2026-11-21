@@ -16,7 +16,7 @@ slug = subprocess.check_output(
     [sys.executable, str(root / "scripts" / "preview-slug.py"), str(root)],
     text=True,
 ).strip()
-assert slug == hashlib.sha256(b"zhanjie-preview").hexdigest()[:16]
+assert slug == hashlib.sha256(b"123").hexdigest()[:16]
 print("preview slug helper ok")
 PY
 
@@ -47,7 +47,7 @@ if grep -q "Publications" "$tmp/hidden/index.html"; then
   echo "offline root page must not include homepage content" >&2
   exit 1
 fi
-if grep -q "zhanjie-preview" "$tmp/hidden/index.html" "$tmp/hidden/owner-preview.js"; then
+if grep -q "123" "$tmp/hidden/index.html" "$tmp/hidden/owner-preview.js"; then
   echo "preview key must not be embedded in the public gate" >&2
   exit 1
 fi
